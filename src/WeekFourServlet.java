@@ -65,15 +65,17 @@ public class WeekFourServlet extends HttpServlet {
 		
 			name=request.getParameter("Name");
 	        
+	        //System.out.println(name);
 	        
-	        do{
+	        //do{
 	        	email=request.getParameter("Email");
-	        if (email.indexOf('@')==-1 || email.indexOf('.')==-1){
-	        	System.out.print("please enter valid email: ");
-	        email=null;
-	        }
-	        }while(email==null);
-	        System.out.println(" EDUCATION\n You can add a maximum of 10 degrees");
+	        //if (email.indexOf('@')==-1 || email.indexOf('.')==-1){
+	        	//System.out.print("please enter valid email: ");
+	        	
+	       // email=null;
+	        //}
+	        //}while(email==null);
+	        //System.out.println(" EDUCATION\n You can add a maximum of 10 degrees");
 	        
 	        
 	        int i=0;
@@ -86,12 +88,12 @@ public class WeekFourServlet extends HttpServlet {
 				
 				university=request.getParameter("University");
 				
-				/*
-				while(!s.hasNextInt()){
-					System.out.println(" Enter the year you received the degree (eg: 2002)");
-	                s.next();
-	                }
-	                */
+				
+				//while(!s.hasNextInt()){
+					//System.out.println(" Enter the year you received the degree (eg: 2002)");
+	                //s.next();
+	                //}
+	                
 				yearOfGrad = Integer.parseInt(request.getParameter("GraduationDateYear"));
 				
 				education = String.format("%s in %s, \n%s, %d \n", typeOfDegree, major, university, yearOfGrad);
@@ -113,18 +115,18 @@ public class WeekFourServlet extends HttpServlet {
 	        	position=request.getParameter("Position");
 	            
 	            nameOfEmployer=request.getParameter("Company");
-	           /* 
-	            while(s.hasNextInt()){
-	            	System.out.println(" Enter the month in letters, not numbers. Enter the month you began working (eg: May)");
-	                s.next();
-	            }*/
+	           
+	            //while(s.hasNextInt()){
+	            //	System.out.println(" Enter the month in letters, not numbers. Enter the month you began working (eg: May)");
+	             //   s.next();
+	            //}
 	            monthStart=request.getParameter("StartMonth");
 	            
-	            /*
-	            while(!s.hasNextInt()){
-	            	System.out.println(" That was not an integer. Enter the year you began working at that job(eg: 2008)");
-	            s.next();
-	            }*/
+	            
+	            //while(!s.hasNextInt()){
+	            //	System.out.println(" That was not an integer. Enter the year you began working at that job(eg: 2008)");
+	            //s.next();
+	            //}
 	            yearStart=Integer.parseInt(request.getParameter("StartYear"));
 	            do{
 	            	//System.out.println(" Is this your current job? (Y/N)");
@@ -134,16 +136,16 @@ public class WeekFourServlet extends HttpServlet {
 	            	dateLeft="Present";
 	            }else{
 	            	
-	            	/*while(s.hasNextInt()){
-	            		System.out.println(" Enter the month in letters, not numbers. Enter the month you left that job (eg: May");
-	                    s.next();
-	                }*/
+	            	//while(s.hasNextInt()){
+	            		//System.out.println(" Enter the month in letters, not numbers. Enter the month you left that job (eg: May");
+	                   // s.next();
+	                //}
 	                monthLeft= request.getParameter("EndMonth");
 	                System.out.println(" Enter the year you left that job");
-	                /*while(!s.hasNextInt()){
-	                	System.out.println(" That was not an integer. Enter the year you left that job");
-	                    s.next();
-	                    }*/
+	                //while(!s.hasNextInt()){
+	                //	System.out.println(" That was not an integer. Enter the year you left that job");
+	                  //  s.next();
+	                  //  }
 	                yearLeft=Integer.parseInt(request.getParameter("EndYear"));
 	                dateLeft = monthLeft+""+ Integer.toString(yearLeft);
 	            }
@@ -181,13 +183,13 @@ public class WeekFourServlet extends HttpServlet {
 	    			yesOrNo=request.getParameter("yesOrNoSkill");
 	    			}while(yesOrNo!="Y"&&yesOrNo!="y"&&yesOrNo!="N"&&yesOrNo!="n");
 		}while(yesOrNo=="Y"||yesOrNo=="y"&& b<20);
-		
+	
 		 	session.setAttribute("session_Name",name);
-		 	session.setAttribute("session_Email",email);
+		 	//session.setAttribute("session_Email",email);
 		 	
-			System.out.println(name);
-			System.out.println(email+ "\n");
-			System.out.println("EDUCATION\n");
+			//System.out.println(name);
+			//System.out.println(email+ "\n");
+			//System.out.println("EDUCATION\n");
 			
 			for(String edu : eduAchievementArray){
 				if (edu ==null){
@@ -205,7 +207,7 @@ public class WeekFourServlet extends HttpServlet {
 				}
 			}
 			
-			System.out.println("SKILLS\n");
+			
 			for(String ski : skillsArray){
 				
 				if (ski ==null){
@@ -216,13 +218,13 @@ public class WeekFourServlet extends HttpServlet {
 			}
 		 	
 				
-		String sql = "Insert into RoboResume (UsernName, email, education, experience, skills)values(?,?,?,?,?)";  
+		String sql = "Insert into RobotResume (UsernName, email, education, experience, skills)values(?,?,?,?,?)";  
 		 
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Customers?"+ "user=root&password=password");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/RoboResume?"+ "user=root&password=password");
             pstmt = con.prepareStatement(sql);
-            //
+            
             pstmt.setString(1, name);
             pstmt.setString(2, email);
             pstmt.setString(3, eduAll);
